@@ -9,6 +9,8 @@ import { NoticiaService } from './services/noticia.service';
 export class AppComponent {
   title = 'noticias';
 
+  listNoticias: any[] = []
+
   constructor(private noticiaService: NoticiaService){
 
   }
@@ -22,6 +24,9 @@ export class AppComponent {
     this.noticiaService.getNoticias(parametros).subscribe(data => {
 
       console.log(data)
+      this.listNoticias = data.articles
+    }, error => {
+      console.log(error)
     });
   }
 }
