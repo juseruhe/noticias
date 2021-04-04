@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'noticias';
+
+
+  buscarNoticias(parametros: any){
+
+    console.log("SOY PADRE")
+    console.log(parametros)
+  }
 }
