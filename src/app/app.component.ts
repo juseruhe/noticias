@@ -11,6 +11,8 @@ export class AppComponent {
 
   listNoticias: any[] = []
 
+  loading= false;
+
   constructor(private noticiaService: NoticiaService){
 
   }
@@ -18,15 +20,22 @@ export class AppComponent {
 
   buscarNoticias(parametros: any){
 
-    console.log("SOY PADRE")
-    console.log(parametros)
+    this.loading = true;
+    this.listNoticias = []
 
-    this.noticiaService.getNoticias(parametros).subscribe(data => {
+    setTimeout(()=>{
 
-      console.log(data)
-      this.listNoticias = data.articles
-    }, error => {
-      console.log(error)
-    });
+      this.noticiaService.getNoticias(parametros).subscribe(data => {
+
+        this.loading = false
+        this.listNoticias = data.articles
+      }, error => {
+        console.log(error)
+        this.loading = false
+      });
+
+    },1000)
+
+   
   }
 }
